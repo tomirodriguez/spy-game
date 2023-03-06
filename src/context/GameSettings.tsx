@@ -1,6 +1,8 @@
-import { MIN_PLAYERS, MIN_SPIES } from "@/constants";
-import { MIN_PLAYERS_ERROR, MIN_SPIES_ERROR } from "@/errors";
+import { MIN_PLAYERS, MIN_SPIES, MIN_TIME } from "@/constants";
+import { MIN_PLAYERS_ERROR, MIN_SPIES_ERROR, MIN_TIME_ERROR } from "@/errors";
 import { type Player } from "@/types";
+import { MAX_TIME } from "../constants";
+import { MAX_TIME_ERROR } from "../errors";
 import {
   createContext,
   useCallback,
@@ -54,8 +56,8 @@ export const GameSettingsProvider = ({ children }: PropsWithChildren) => {
   );
 
   const changeTime = useCallback((newTime: number) => {
-    if (newTime <= 30) return "La ronda no puede durar menos de 30 segundos.";
-    if (newTime >= 60 * 5) return "La ronda no puede durar menos de 5 minutos.";
+    if (newTime < MIN_TIME) return MIN_TIME_ERROR;
+    if (newTime > MAX_TIME) return MAX_TIME_ERROR;
 
     setTime(newTime);
   }, []);

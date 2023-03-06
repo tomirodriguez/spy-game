@@ -2,11 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .effect-3d {
+    perspective: 1000px;
+  }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
 @layer components {
   .button-resume {
     @apply relative flex h-16 w-full items-center gap-4 rounded-lg border-2 border-solid border-white px-4 py-2 text-xl;
   }
   .button {
     @apply relative flex items-center gap-4 rounded-lg bg-slate-300 bg-opacity-80 px-6 py-2 text-xl uppercase tracking-widest text-black;
+  }
+
+  .card {
+    @apply transform-3d absolute flex h-full w-full items-center justify-center rounded-lg shadow-xl transition-all duration-700;
   }
 }

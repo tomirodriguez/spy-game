@@ -2,12 +2,18 @@ import { useGameSettings } from "@/hooks/useGameSettings";
 import ChevronRight from "@/icons/ChevronRight";
 import Timer from "@/icons/Timer";
 import { type SettingSetup } from "@/types";
+import { secondsToDate } from "@/utils/secondsToDate";
 import Image from "next/image";
 import { useCallback, useState } from "react";
-import PlayersSetup from "./PlayersSetup";
-import SpiesSetup from "./SpiesSetup";
+import PlayersSetup from "./components/PlayersSetup";
+import SpiesSetup from "./components/SpiesSetup";
+import TimeSetup from "./components/TimeSetup";
 
-const GameSettingsResume = () => {
+type Props = {
+  onStart: () => void;
+};
+
+const GameSettings = ({ onStart }: Props) => {
   const { players, spies, time } = useGameSettings();
   const [settingSetup, setSettingSetup] = useState<SettingSetup>();
 
@@ -39,9 +45,7 @@ const GameSettingsResume = () => {
         </span>
         <p>Tiempo</p>
 
-        <span className="ml-auto">
-          {new Date(time * 1000).toISOString().slice(15, 19)}
-        </span>
+        <span className="ml-auto">{secondsToDate(time)}</span>
         <ChevronRight />
       </button>
 
@@ -54,12 +58,15 @@ const GameSettingsResume = () => {
           height={100}
           priority
         />
-        <p className="button">Empezar</p>
+        <p className="button" onClick={onStart}>
+          Empezar
+        </p>
       </button>
       {settingSetup === "players" && <PlayersSetup onClose={closeSetup} />}
       {settingSetup === "spies" && <SpiesSetup onClose={closeSetup} />}
+      {settingSetup === "time" && <TimeSetup onClose={closeSetup} />}
     </section>
   );
 };
 
-export default GameSettingsResume;
+export default GameSettings;

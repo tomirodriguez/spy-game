@@ -33,7 +33,7 @@ const SpiesSetup = ({ onClose }: Props) => {
         <button className="button" type="submit">
           Guardar
         </button>
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && <p className="text-center text-sm text-red-400">{error}</p>}
       </form>
     </Modal>
   );
