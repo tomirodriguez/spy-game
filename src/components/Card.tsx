@@ -76,7 +76,7 @@ const Card = ({
         onClick={handleShowWord}
       >
         <Image
-          className="rounded-full border-4 border-blue-700"
+          className="h-36 w-36 rounded-full border-4 border-blue-700 object-contain"
           src="/mau.png"
           alt="Dorso de carta"
           width={150}
