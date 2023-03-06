@@ -10,7 +10,7 @@ type Props = {
   onCardRevealed?: () => void;
 };
 
-const FREEZE_TIME = 500;
+const FREEZE_TIME = 1000;
 
 const Card = ({
   word = "",
