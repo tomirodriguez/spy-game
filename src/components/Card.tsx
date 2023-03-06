@@ -48,7 +48,7 @@ const Card = ({
     >
       <div
         className={clsx(
-          "card bg-gradient-to-b from-blue-900 to-slate-800 uppercase tracking-widest",
+          "card bg-gradient-to-b from-blue-900 to-slate-800 text-xl uppercase tracking-widest",
           !showWord && "rotate-y-180"
         )}
         onClick={handleHideWord}
