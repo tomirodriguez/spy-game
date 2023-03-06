@@ -8,10 +8,22 @@ const PlayerSchema = z.object({
 
 export type Player = z.infer<typeof PlayerSchema>;
 
-const GameStateSchema = z.enum(["resume", "cards", "playing", "finish"]);
+const GameStateSchema = z.enum([
+  "resume",
+  "creating-round",
+  "cards",
+  "playing",
+  "finish",
+]);
 
 export type GameState = z.infer<typeof GameStateSchema>;
 
 const SettingSetupSchema = z.enum(["players", "spies", "time"]);
 
 export type SettingSetup = z.infer<typeof SettingSetupSchema>;
+
+export type Round = {
+  word: string;
+  spies: Set<Player>;
+  timesResetted: number;
+};

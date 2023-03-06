@@ -14,7 +14,7 @@ type Props = {
 };
 
 const GameSettings = ({ onStart }: Props) => {
-  const { players, spies, time } = useGameSettings();
+  const { players, spiesQuantity: spies, time } = useGameSettings();
   const [settingSetup, setSettingSetup] = useState<SettingSetup>();
 
   const closeSetup = useCallback(() => setSettingSetup(undefined), []);

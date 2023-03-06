@@ -7,12 +7,17 @@ interface ContextProps {
   nextStep: () => void;
   previousStep: () => void;
   backToMenu: () => void;
-  restartCards: () => void;
 }
 
 export const GameStateContext = createContext({} as ContextProps);
 
-const STATES: GameState[] = ["resume", "cards", "playing", "finish"];
+const STATES: GameState[] = [
+  "resume",
+  "creating-round",
+  "cards",
+  "playing",
+  "finish",
+];
 
 export const GameStateProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState(0);
@@ -33,13 +38,6 @@ export const GameStateProvider = ({ children }: PropsWithChildren) => {
     setState(0);
   };
 
-  const restartCards = () => {
-    const newState = STATES.indexOf("cards");
-    if (!newState) throw new Error("Internal error: couldn't reset the cards.");
-
-    setState(newState);
-  };
-
   return (
     <GameStateContext.Provider
       value={{
@@ -47,7 +45,6 @@ export const GameStateProvider = ({ children }: PropsWithChildren) => {
         nextStep,
         previousStep,
         backToMenu,
-        restartCards,
       }}
     >
       {children}

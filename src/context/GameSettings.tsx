@@ -14,11 +14,11 @@ type Response = string | undefined;
 
 interface ContextProps {
   players: Player[];
-  spies: number;
+  spiesQuantity: number;
   time: number;
 
   changePlayers: (players: Player[]) => Response;
-  changeSpies: (newSpies: number) => Response;
+  changeSpiesQuantity: (newSpies: number) => Response;
   changeTime: (newTime: number) => Response;
 }
 
@@ -33,7 +33,7 @@ const DEFAULT_PLAYERS: Player[] = [
 export const GameSettingsProvider = ({ children }: PropsWithChildren) => {
   const [players, setPlayers] = useState(DEFAULT_PLAYERS);
   const [time, setTime] = useState(180);
-  const [spies, setSpies] = useState(1);
+  const [spiesQuantity, setSpiesQuantity] = useState(1);
 
   const changePlayers = useCallback((newPLayers: Player[]) => {
     if (newPLayers.length < MIN_PLAYERS) return MIN_PLAYERS_ERROR;
@@ -41,7 +41,7 @@ export const GameSettingsProvider = ({ children }: PropsWithChildren) => {
     setPlayers(newPLayers);
   }, []);
 
-  const changeSpies = useCallback(
+  const changeSpiesQuantity = useCallback(
     (newSpies: number) => {
       if (newSpies < MIN_SPIES) return MIN_SPIES_ERROR;
 
@@ -50,7 +50,7 @@ export const GameSettingsProvider = ({ children }: PropsWithChildren) => {
       if (maxSpies < newSpies)
         return "Debe haber al menos 2 jugadores por cada espía.";
 
-      setSpies(newSpies);
+      setSpiesQuantity(newSpies);
     },
     [players.length]
   );
@@ -66,10 +66,10 @@ export const GameSettingsProvider = ({ children }: PropsWithChildren) => {
     <GameSettingsContext.Provider
       value={{
         players,
-        spies,
+        spiesQuantity,
         time,
         changePlayers,
-        changeSpies,
+        changeSpiesQuantity,
         changeTime,
       }}
     >

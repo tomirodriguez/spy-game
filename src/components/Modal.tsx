@@ -8,7 +8,7 @@ type Props = PropsWithChildren<{
 
 const Modal = ({ onClose, children, title }: Props) => {
   return (
-    <div className="fixed top-0 left-0 flex h-screen w-screen items-center justify-center">
+    <div className="fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center text-white">
       <div
         className="absolute h-full w-full bg-black bg-opacity-60"
         onClick={onClose}

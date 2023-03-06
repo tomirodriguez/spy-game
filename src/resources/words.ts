@@ -1,4 +1,4 @@
-[
+export const WORDS = [
   "abogado",
   "aceite",
   "áfrica",
@@ -248,7 +248,6 @@
   "méxico",
   "micro",
   "microscopi",
-  "mielo",
   "millonario",
   "mina",
   "misil",
@@ -401,5 +400,5 @@
   "viento",
   "yema",
   "zanahoria",
-  "zapato"
-]
+  "zapato",
+];

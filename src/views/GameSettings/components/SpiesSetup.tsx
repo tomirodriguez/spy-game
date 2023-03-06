@@ -8,7 +8,8 @@ type Props = {
 };
 
 const SpiesSetup = ({ onClose }: Props) => {
-  const { spies, changeSpies } = useGameSettings();
+  const { spiesQuantity: spies, changeSpiesQuantity: changeSpies } =
+    useGameSettings();
   const [error, setError] = useState("");
   const [amountOfSpies, setamountOfSpies] = useState(spies);
 
