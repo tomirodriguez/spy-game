@@ -11,13 +11,7 @@ interface ContextProps {
 
 export const GameStateContext = createContext({} as ContextProps);
 
-const STATES: GameState[] = [
-  "resume",
-  "creating-round",
-  "cards",
-  "playing",
-  "finish",
-];
+const STATES: GameState[] = ["resume", "cards", "playing"];
 
 export const GameStateProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState(0);

@@ -1,18 +1,19 @@
 import NavBar from "@/components/NavBar";
 import { useGameState } from "@/hooks/useGameState";
 import CardsShow from "@/views/CardsShow";
+import GameCountdown from "@/views/GameCountdown";
 import GameSettings from "@/views/GameSettings";
 import Head from "next/head";
 import { useRoundsSettings } from "../hooks/useRoundsSettings";
 
 const Home = () => {
-  const { state, nextStep } = useGameState();
+  const { state, nextStep, backToMenu } = useGameState();
   const { startRound, currentRound } = useRoundsSettings();
 
   const handleGameStart = async () => {
+    backToMenu();
     nextStep();
     await startRound();
-    nextStep();
   };
 
   return (
@@ -26,12 +27,15 @@ const Home = () => {
         <NavBar />
         <main className="flex grow flex-col">
           {state === "resume" && <GameSettings onStart={handleGameStart} />}
-          {state === "creating-round" && <div>loading</div>}
           {state === "cards" && (
             <CardsShow round={currentRound} onStartRound={nextStep} />
           )}
-          {state === "playing" && <div>JUEGO</div>}
-          {state === "finish" && <div>JUEGO TERMINADO</div>}
+          {state === "playing" && (
+            <GameCountdown
+              onStartNewRound={handleGameStart}
+              onBackToHome={backToMenu}
+            />
+          )}
         </main>
       </div>
     </>
