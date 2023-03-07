@@ -37,12 +37,8 @@ export const RoundsSettingsProvider = ({ children }: PropsWithChildren) => {
     const startingPlayerIndex = roundsPlayed - 1;
 
     return players.map((_, index) => {
-      let player = players[startingPlayerIndex + index];
-      if (player) return player;
-
-      const playerIndex = players.length - index - startingPlayerIndex;
-
-      player = players[playerIndex];
+      const properIndex = (startingPlayerIndex + index) % players.length;
+      const player = players[properIndex];
 
       if (!player) throw new Error("INTERNAL ERROR");
       return player;
