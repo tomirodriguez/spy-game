@@ -1,7 +1,12 @@
 import { useGameState } from "@/hooks/useGameState";
-import { type Round } from "@/types";
+import { type Player, type Round } from "@/types";
 import { createRound } from "@/utils/createRound";
-import { createContext, useState, type PropsWithChildren } from "react";
+import {
+  createContext,
+  useMemo,
+  useState,
+  type PropsWithChildren,
+} from "react";
 import { useGameSettings } from "../hooks/useGameSettings";
 
 interface ContextProps {
@@ -9,6 +14,7 @@ interface ContextProps {
   currentRound?: Round;
   loading: boolean;
   roundsPlayed: number;
+  playersOrder: Player[];
 
   startRound: () => Promise<Round>;
   resetRound: () => Promise<Round>;
@@ -24,6 +30,24 @@ export const RoundsSettingsProvider = ({ children }: PropsWithChildren) => {
   const [rounds, setRounds] = useState<Round[]>([]);
   const [usedWords, setUsedWords] = useState(new Set<string>());
   const [roundsPlayed, setRoundsPlayed] = useState(0);
+
+  const playersOrder = useMemo(() => {
+    if (roundsPlayed === 0) return players;
+
+    const startingPlayerIndex = roundsPlayed - 1;
+
+    return players.map((_, index) => {
+      let player = players[startingPlayerIndex + index];
+      if (player) return player;
+
+      const playerIndex = players.length - index - startingPlayerIndex;
+
+      player = players[playerIndex];
+
+      if (!player) throw new Error("INTERNAL ERROR");
+      return player;
+    });
+  }, [players, roundsPlayed]);
 
   const startRound = async () => {
     setLoading(true);
@@ -70,6 +94,7 @@ export const RoundsSettingsProvider = ({ children }: PropsWithChildren) => {
         rounds,
         currentRound: rounds[roundsPlayed - 1],
         roundsPlayed,
+        playersOrder,
 
         startRound,
         resetRound,

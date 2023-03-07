@@ -2,7 +2,6 @@ import Card from "@/components/Card";
 import Reset from "@/icons/Reset";
 import { type Round } from "@/types";
 import { useState } from "react";
-import { useGameSettings } from "../../hooks/useGameSettings";
 import { useRoundsSettings } from "../../hooks/useRoundsSettings";
 import ResetModal from "./components/ResetModal";
 
@@ -12,8 +11,8 @@ type Props = {
 };
 
 const CardsShow = ({ round, onStartRound }: Props) => {
-  const { players } = useGameSettings();
-  const { resetRound, loading, roundsPlayed } = useRoundsSettings();
+  const { resetRound, loading, roundsPlayed, playersOrder } =
+    useRoundsSettings();
   const [playerTurn, setPlayerTurn] = useState(0);
   const [showResetModal, setShowResetModal] = useState(false);
 
@@ -29,7 +28,7 @@ const CardsShow = ({ round, onStartRound }: Props) => {
   };
 
   const { spies, word } = round;
-  const player = players[playerTurn];
+  const player = playersOrder[playerTurn];
 
   return (
     <section className="container flex max-w-md grow flex-col items-center justify-center gap-10 text-white">
@@ -50,7 +49,7 @@ const CardsShow = ({ round, onStartRound }: Props) => {
           player={player}
           word={word}
           onCardRevealed={() => setPlayerTurn((prev) => prev + 1)}
-          preventFlip={playerTurn === players.length}
+          preventFlip={playerTurn === playersOrder.length}
         />
       )}
 
