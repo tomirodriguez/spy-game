@@ -6,7 +6,7 @@ import { useGameSettings } from "../hooks/useGameSettings";
 
 interface ContextProps {
   rounds: Round[];
-  currentRound: Round;
+  currentRound?: Round;
   loading: boolean;
   roundsPlayed: number;
 

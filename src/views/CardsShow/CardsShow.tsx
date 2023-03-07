@@ -46,7 +46,8 @@ const CardsShow = ({ round, onStartRound }: Props) => {
       {loading && <Card preventFlip />}
       {!loading && (
         <Card
-          isSpy={spies.has(player)}
+          isSpy={player && spies.has(player)}
+          player={player}
           word={word}
           onCardRevealed={() => setPlayerTurn((prev) => prev + 1)}
           preventFlip={playerTurn === players.length}

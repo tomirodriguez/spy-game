@@ -9,6 +9,7 @@ import {
   useState,
   type PropsWithChildren,
 } from "react";
+import { PLAYERS } from "@/resources/players";
 
 type Response = string | undefined;
 
@@ -24,11 +25,12 @@ interface ContextProps {
 
 export const GameSettingsContext = createContext({} as ContextProps);
 
-const DEFAULT_PLAYERS: Player[] = [
-  { name: "Jugador 1" },
-  { name: "Jugador 2" },
-  { name: "Jugador 3" },
-];
+const DEFAULT_PLAYERS: Player[] = PLAYERS;
+// const DEFAULT_PLAYERS: Player[] = [
+//   { id: 0, name: "Jugador 1", avatar: "/avatar/guada.png" },
+//   { id: 1, name: "Jugador 2" },
+//   { id: 2, name: "Jugador 3" },
+// ];
 
 export const GameSettingsProvider = ({ children }: PropsWithChildren) => {
   const [players, setPlayers] = useState(DEFAULT_PLAYERS);

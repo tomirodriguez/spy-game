@@ -1,8 +1,10 @@
+import { type Player } from "@/types";
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 
 type Props = {
+  player?: Player;
   word?: string;
   preventFlip?: boolean;
   isSpy?: boolean;
@@ -16,6 +18,7 @@ const Card = ({
   word = "",
   preventFlip = false,
   isSpy = false,
+  player,
   onCardRevealed,
 }: Props) => {
   const [showWord, setShowWord] = useState(false);
@@ -36,7 +39,7 @@ const Card = ({
     setShowWord(false);
     setTimeout(() => {
       setFlipping(false);
-      onCardRevealed();
+      if (onCardRevealed) void onCardRevealed();
     }, FREEZE_TIME);
   };
 
@@ -56,7 +59,7 @@ const Card = ({
         {isSpy ? (
           <div className="flex flex-col items-center justify-center gap-6">
             <Image
-              src="/sabri.png"
+              src="/spy.png"
               alt="Espia"
               width={150}
               height={150}
@@ -76,8 +79,8 @@ const Card = ({
         onClick={handleShowWord}
       >
         <Image
-          className="h-36 w-36 rounded-full border-4 border-blue-700 object-contain"
-          src="/mau.png"
+          className="h-36 w-36 rounded-full border-4 border-blue-700"
+          src={player?.avatar ?? "/logo.png"}
           alt="Dorso de carta"
           width={150}
           height={150}

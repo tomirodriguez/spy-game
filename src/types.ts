@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 const PlayerSchema = z.object({
+  id: z.number(),
+  avatar: z.string().optional(),
   name: z
     .string({ required_error: "Debe tener un nombre." })
     .min(2, { message: "Al nombre debe tener al menos 2 letras" }),
