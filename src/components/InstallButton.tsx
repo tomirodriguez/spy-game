@@ -10,7 +10,7 @@ const InstallButton: React.FC = () => {
   useEffect(() => {
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
-      console.log("QUE ONDA ESTO");
+      console.log("QUE ONDA ESTO", event);
       setShowInstallButton(true);
     };
 
