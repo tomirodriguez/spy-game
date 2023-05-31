@@ -1,3 +1,4 @@
+import InstallButton from "@/components/InstallButton";
 import { GameSettingsProvider } from "@/context/GameSettings";
 import { GameStateProvider } from "@/context/GameState";
 import { RoundsSettingsProvider } from "@/context/RoundsSettings";
@@ -17,6 +18,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           </RoundsSettingsProvider>
         </GameStateProvider>
       </GameSettingsProvider>
+      <InstallButton />
     </>
   );
 };
