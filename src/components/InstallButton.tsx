@@ -26,6 +26,8 @@ const InstallButton: React.FC = () => {
   }, []);
 
   const handleInstall = () => {
+    console.log({ deferredPrompt });
+
     if (deferredPrompt) {
       deferredPrompt.prompt();
 
