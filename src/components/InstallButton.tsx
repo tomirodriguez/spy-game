@@ -10,6 +10,7 @@ const InstallButton: React.FC = () => {
   useEffect(() => {
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
+      console.log("QUE ONDA ESTO");
       setShowInstallButton(true);
     };
 
@@ -57,7 +58,11 @@ const InstallButton: React.FC = () => {
     return null;
   }
 
-  return <button onClick={handleInstall}>Install App</button>;
+  return (
+    <div className="absolute flex h-screen w-screen items-center justify-center">
+      <button onClick={handleInstall}>Install App</button>;
+    </div>
+  );
 };
 
 export default InstallButton;
