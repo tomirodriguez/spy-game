@@ -1,12 +1,12 @@
 {
-    "theme_color": "#4f35f6",
-    "background_color": "#000000",
-    "display": "fullscreen",
+    "theme_color": "#353df6",
+    "background_color": "#020202",
+    "display": "standalone",
     "scope": "/",
     "start_url": "/",
     "name": "Spy Game",
-    "short_name": "spy",
-    "description": "Juego para descubrir al Espia",
+    "short_name": "Spy Game",
+    "description": "Juego de espia",
     "icons": [
         {
             "src": "/icon-192x192.png",

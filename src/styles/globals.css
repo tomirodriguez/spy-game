@@ -35,3 +35,7 @@
     @apply transform-3d absolute z-10 flex h-full w-full items-center justify-center rounded-lg shadow-xl transition-all duration-700;
   }
 }
+
+.next-pwa-update-available {
+  @apply bg-slate-900 text-white;
+}
