@@ -45,7 +45,7 @@ const InstallButton: React.FC = () => {
   }
 
   return (
-    <div className="absolute flex h-screen w-screen items-center justify-center">
+    <div className="absolute top-0 left-0 flex h-screen w-screen items-center justify-center">
       <button onClick={handleInstall}>Install App</button>;
     </div>
   );
