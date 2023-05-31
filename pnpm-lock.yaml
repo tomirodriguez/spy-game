@@ -1,8 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@jridgewell/sourcemap-codec': ^1.4.15
-  '@rollup/plugin-terser': ^0.4.3
   '@types/eslint': ^8.21.1
   '@types/next-pwa': ^5.6.4
   '@types/node': ^18.14.0
@@ -28,8 +26,6 @@ specifiers:
   zod: ^3.20.6
 
 dependencies:
-  '@jridgewell/sourcemap-codec': 1.4.15
-  '@rollup/plugin-terser': 0.4.3
   clsx: 1.2.1
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   next-pwa: 5.6.0_next@13.2.3
@@ -1438,20 +1434,6 @@ packages:
       '@rollup/pluginutils': 3.1.0_rollup@2.79.1
       magic-string: 0.25.9
       rollup: 2.79.1
-
-  /@rollup/plugin-terser/0.4.3:
-    resolution: {integrity: sha512-EF0oejTMtkyhrkwCdg0HJ0IpkcaVg1MMSf2olHb2Jp+1mnLM04OhjpJWGma4HobiDTF0WCyViWuvadyE9ch2XA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.x || ^3.x
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      serialize-javascript: 6.0.1
-      smob: 1.4.0
-      terser: 5.17.6
-    dev: false
 
   /@rollup/pluginutils/3.1.0_rollup@2.79.1:
     resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
@@ -4097,10 +4079,6 @@ packages:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
     engines: {node: '>=12'}
     dev: true
-
-  /smob/1.4.0:
-    resolution: {integrity: sha512-MqR3fVulhjWuRNSMydnTlweu38UhQ0HXM4buStD/S3mc/BzX3CuM9OmhyQpmtYCvoYdl5ris6TI0ZqH355Ymqg==}
-    dev: false
 
   /source-list-map/2.0.1:
     resolution: {integrity: sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==}

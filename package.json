@@ -9,8 +9,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@jridgewell/sourcemap-codec": "^1.4.15",
-    "@rollup/plugin-terser": "^0.4.3",
     "clsx": "^1.2.1",
     "next": "^13.2.1",
     "next-pwa": "^5.6.0",
