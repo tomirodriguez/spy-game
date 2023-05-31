@@ -50,10 +50,10 @@ const InstallButton: React.FC = () => {
   }
 
   return (
-    <div className="justify-bottom absolute top-0 flex h-screen w-screen items-center">
+    <div className="justify-bottom absolute top-0 flex h-screen w-screen flex-col items-center">
       <div className="flex w-full justify-center bg-white py-4">
-        <button className="text-black" onClick={handleInstall}>
-          Install App
+        <button className="bg-blue-500 px-2 py-1" onClick={handleInstall}>
+          Ahora podes installar la App!
         </button>
       </div>
     </div>

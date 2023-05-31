@@ -18,7 +18,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           </RoundsSettingsProvider>
         </GameStateProvider>
       </GameSettingsProvider>
-      <InstallButton />
+      {/* <InstallButton /> */}
     </>
   );
 };
