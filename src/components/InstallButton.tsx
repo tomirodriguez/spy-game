@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState, useEffect } from "react";
 
-interface CustomWindow extends Window {
-  deferredPrompt: any;
-}
+let deferredPrompt: any;
 
 const InstallButton: React.FC = () => {
   const [showInstallButton, setShowInstallButton] = useState(false);
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (event: Event) => {
+    const handleBeforeInstallPrompt = (event: any) => {
       event.preventDefault();
-      console.log("QUE ONDA ESTO", event);
+      deferredPrompt = event;
       setShowInstallButton(true);
     };
 
@@ -25,33 +26,18 @@ const InstallButton: React.FC = () => {
   }, []);
 
   const handleInstall = () => {
-    const promptEvent = new Promise((resolve) => {
-      const handleUserChoice = (choiceResult: any) => {
-        resolve(choiceResult);
-        setShowInstallButton(false);
-      };
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
 
-      (window as unknown as CustomWindow).addEventListener(
-        "appinstalled",
-        handleUserChoice
-      );
-
-      if ((window as unknown as CustomWindow).deferredPrompt) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-        (window as unknown as CustomWindow).deferredPrompt.prompt();
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-        (window as unknown as CustomWindow).deferredPrompt.userChoice.then(
-          handleUserChoice
-        );
-      }
-    });
-
-    void promptEvent.then((choiceResult: any) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the installation");
-      }
-    });
+      deferredPrompt.userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
+        } else {
+          console.log("User dismissed the install prompt");
+        }
+        deferredPrompt = null;
+      });
+    }
   };
 
   if (!showInstallButton) {
